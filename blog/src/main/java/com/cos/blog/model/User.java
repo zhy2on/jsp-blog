@@ -1,12 +1,20 @@
 package com.cos.blog.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
 
-@Entity // User 클래스가
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity // ORM 클래스
 public class User {
 
     @Id // Primary key
