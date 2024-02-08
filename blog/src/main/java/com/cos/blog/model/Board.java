@@ -9,6 +9,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -36,6 +37,9 @@ public class Board {
     private User user; // 작성자.
     // 원래 DB는 오브젝트를 저장할 수 없다. FK를 써야한다. 그런데 자바는 오브젝트를 저장할 수 있다.
     // ORM을 사용하면 오브젝트 코드를 DB로 매핑시킬 수 있다.
+
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER) // mappedBy 연관관계의 주인이 아니다. (난 FK가 아니에요. DB에 컬럼을 만들지 마세요)
+    private List<Reply> reply;
 
     @CreationTimestamp
     private Timestamp createDate;
