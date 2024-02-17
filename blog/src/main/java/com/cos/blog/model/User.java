@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
@@ -21,7 +20,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id; // 시퀀스: AUTO_INCREMENT
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = 30, unique = true)
     private String username;
 
     @Column(nullable = false, length = 100) // 비밀번호 암호화를 위해 넉넉하게 잡아두기
@@ -30,8 +29,8 @@ public class User {
     @Column(nullable = false, length = 50)
     private String email;
 
+    //    @ColumnDefault("'USER'")
     @Enumerated(EnumType.STRING)
-    @ColumnDefault("'USER'")
     private UserRole role;
 
     @CreationTimestamp // 시간이 자동으로 입력
